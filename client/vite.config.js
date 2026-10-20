@@ -49,6 +49,15 @@ export default defineConfig(({ mode }) => {
       host: '0.0.0.0'
     },
 
+      test: {
+        environment: 'jsdom',
+        setupFiles: ['tests/unit/setup.js'],
+        include: ['tests/unit/**/*.test.js'],
+        reporters: ['default', 'junit'],
+        outputFile: { junit: 'reports/frontend-junit.xml' }
+      },
+
+
     build: {
       outDir: 'dist',
       // Useful when a production bundle misbehaves and you need to read a
