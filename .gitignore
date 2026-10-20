@@ -60,3 +60,5 @@ Thumbs.db
 *~
 server/reports
 client/reports/
+client/test-results/
+client/playwright-report/
