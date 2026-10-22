@@ -14,6 +14,10 @@ RUN useradd --create-home --uid 1000 app
 COPY --chown=app:app . .
 USER app
 
+RUN SECRET_KEY=build-only-not-secret ALLOWED_HOSTS=localhost \
+    python manage.py collectstatic --noinput
+
 EXPOSE 8000
 
+ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--access-logfile", "-"]
